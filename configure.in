@@ -83,6 +83,9 @@ case "$host" in
             use_version_rc=true
         fi
         ;;
+    *-psp-*)
+        CFLAGS="$CFLAGS -G0"
+    ;;
 esac
 AM_CONDITIONAL(USE_VERSION_RC, test x$use_version_rc = xtrue)
 
@@ -124,6 +127,10 @@ case "$host" in
             CFLAGS="-mthreads"
 	fi
         SYS_GL_LIBS=""
+        ;;
+    *-psp-*)
+        MATHLIB="-lm"
+        SYS_GL_LIBS="-lGL -lpsprtc"
         ;;
     *)
         MATHLIB="-lm"
